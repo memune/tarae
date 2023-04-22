@@ -6,6 +6,7 @@ import supabase from '../supabaseClient';
 const MemoList = () => {
   const [memos, setMemos] = useState([]);
   const [selectedMemo, setSelectedMemo] = useState(null);
+  const [isNewMemo, setIsNewMemo] = useState(false);
 
   // 메모 데이터를 불러오는 함수
   const fetchMemos = async () => {
@@ -29,6 +30,12 @@ const MemoList = () => {
 
   const handleSelectMemo = (memo) => {
     setSelectedMemo(memo);
+    setIsNewMemo(false);
+  };
+
+  const handleNewMemo = () => {
+    setSelectedMemo(null);
+    setIsNewMemo(true);
   };
 
 
@@ -37,10 +44,16 @@ const MemoList = () => {
       
       <header className="app-header">
         <h1>TARAE</h1>
+        <button className="newmemo-btn" onClick={handleNewMemo}>Add Inspiration</button>
       </header>
       
       <div className="input-area">
-        <MemoForm memo={selectedMemo} fetchMemos={fetchMemos} />
+        <MemoForm 
+          memo={selectedMemo} 
+          fetchMemos={fetchMemos} 
+          isNewMemo={isNewMemo}
+          setIsNewMemo={setIsNewMemo}
+        /> {/* isNewMemo, setIsNewMemo 추가 */}
       </div>
 
       <div className="list-area">
@@ -50,6 +63,7 @@ const MemoList = () => {
             memo={memo} 
             setSelectedMemo={setSelectedMemo}
             onSelectMemo={handleSelectMemo}
+            selectedMemo={selectedMemo}
             isSelected={selectedMemo && memo.id === selectedMemo.id}
             />
         ))}

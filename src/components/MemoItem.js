@@ -4,7 +4,7 @@ import supabase from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
 
-const MemoItem = ({ memo, setSelectedMemo, handleSelectMemo, selectedMemo }) => {
+const MemoItem = ({ memo, setSelectedMemo, selectedMemo }) => {
 
   const handelClick = () => {
     setSelectedMemo(memo);

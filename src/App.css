@@ -8,7 +8,7 @@ body {
 .app-header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 1rem;
   width: 100%;
   background-color: #042826;
   z-index: 1;
@@ -21,8 +21,28 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: left;
-  color: rgba(255, 255, 255, 0.95);
+  color: #E2DACE;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.newmemo-btn {
+  position: absolute;
+  top: 25%; /* 버튼의 중앙이 헤더의 중앙에 오도록 설정합니다. */
+  right: 1rem;
+  transform: translateY(-50%); /* 버튼의 높이의 절반만큼 위로 이동합니다. */
+  background-color: #042826;
+  color: #E2DACE;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+  z-index: 1;
+}
+
+.newmemo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .input-area {
@@ -47,8 +67,8 @@ body {
 }
 
 .memo-item {
-  color: white; /* 폰트 색상 */
-  border: 1px solid #ddd;
+  color: #929B95; /* 폰트 색상 */
+  border: 1px solid #235C59;
   margin: 1rem 0;
   border-radius: 8px;
   padding: 1rem;
@@ -60,8 +80,8 @@ textarea {
   height: 80vh;
   resize: none;
   background-color: #042826;
-  color: white;
-  font-size: 6rem; /* 폰트 사이즈 */
+  color: #E2DACE;
+  font-size: 3rem; /* 폰트 사이즈 */
   padding: 1rem;
   border: none;
   border-radius: 0;
@@ -72,7 +92,7 @@ textarea {
 button[type="submit"],
 button {
   background-color: #042826;
-  color: white;
+  color: #E2DACE;
   border: none;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
@@ -88,9 +108,10 @@ button {
 textarea:focus,
 button:focus {
   outline: none;
-}
+} 
 
 .memo-item.selected {
-  background-color: #e6f7ff;
+  border: 1px solid #59C3BE;
   border-radius: 5px;
+  color: #E2DACE; 
 }
