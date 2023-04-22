@@ -1,15 +1,22 @@
-  import React, { useState } from 'react';
+  import React, { useState, useEffect } from 'react';
   import supabase from '../supabaseClient';
 
-  const MemoForm = ({ memo, fetchMemos, setIsEditing }) => {
-    const [content, setContent] = useState(memo ? memo.content : '');
+const MemoForm = ({ memo, fetchMemos }) => {
+    const [content, setContent] = useState('');
+
+    useEffect(() => {
+      if (memo) {
+        setContent(memo.content);
+      }
+    }, [memo]);
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       if (memo) {
-              // 기존 메모 수정
-          const { data, error } = await supabase
+        // 기존 메모 수정
+        const { data, error } = await supabase
           .from('aimo')
           .update({ content, updated_at: new Date() })
           .match({ id: memo.id });
@@ -17,7 +24,6 @@
       if (error) {
           console.error('Error updating memo:', error);
       } else {
-          setIsEditing(false);
           fetchMemos();
       }
         } else {
@@ -36,7 +42,6 @@
         }
       };
 
-
       const handleKeyDown = (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
           handleSubmit(e);
@@ -51,7 +56,7 @@
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={handleKeyDown} // onKeyDown 이벤트 추가
           />
-          <button type="submit">{memo ? '' : 'Save the World'}</button>
+          <button type="submit">{memo ? 'Save' : 'Add'}</button>
         </form>
       );
     };

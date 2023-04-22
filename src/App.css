@@ -81,10 +81,16 @@ button {
   cursor: pointer;
   box-sizing: border-box;
   font-family: 'Noto Sans KR', sans-serif; /* 폰트 패밀리 */
+
 }
 
 
 textarea:focus,
 button:focus {
   outline: none;
+}
+
+.memo-item.selected {
+  background-color: #e6f7ff;
+  border-radius: 5px;
 }

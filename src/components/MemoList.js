@@ -5,6 +5,7 @@ import supabase from '../supabaseClient';
 
 const MemoList = () => {
   const [memos, setMemos] = useState([]);
+  const [selectedMemo, setSelectedMemo] = useState(null);
 
   // 메모 데이터를 불러오는 함수
   const fetchMemos = async () => {
@@ -21,6 +22,16 @@ const MemoList = () => {
     fetchMemos();
   }, []);
 
+  // const handleMemoFormSubmit = async () => {
+  //   await fetchMemos();
+  //   setSelectedMemo(null);
+  // }
+
+  const handleSelectMemo = (memo) => {
+    setSelectedMemo(memo);
+  };
+
+
   return (
     <div>
       
@@ -29,15 +40,20 @@ const MemoList = () => {
       </header>
       
       <div className="input-area">
-        <MemoForm fetchMemos={fetchMemos} />
+        <MemoForm memo={selectedMemo} fetchMemos={fetchMemos} />
       </div>
 
       <div className="list-area">
         {memos.map((memo) => (
-          <MemoItem key={memo.id} memo={memo} fetchMemos={fetchMemos} />
+          <MemoItem 
+            key={memo.id} 
+            memo={memo} 
+            setSelectedMemo={setSelectedMemo}
+            onSelectMemo={handleSelectMemo}
+            isSelected={selectedMemo && memo.id === selectedMemo.id}
+            />
         ))}
       </div>
-
     </div>
   );
 };
