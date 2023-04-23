@@ -44,7 +44,7 @@ const MemoList = () => {
       
       <header className="app-header">
         <h1>TARAE</h1>
-        <button className="newmemo-btn" onClick={handleNewMemo}>Add Inspiration</button>
+        <button className="newmemo-btn" onClick={handleNewMemo}>New Inspiration</button>
       </header>
       
       <div className="input-area">
@@ -65,6 +65,7 @@ const MemoList = () => {
             onSelectMemo={handleSelectMemo}
             selectedMemo={selectedMemo}
             isSelected={selectedMemo && memo.id === selectedMemo.id}
+            fetchMemos={fetchMemos}
             />
         ))}
       </div>
